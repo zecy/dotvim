@@ -1,6 +1,6 @@
 "Vim Plugin Manger{{{1
 call pathogen#infect()
-source $HOME/.vim/vimrc
+"source! $HOME/.vim/vimrc
 "}}}
 "基本设置{{{1
 set lines=25 columns=80
@@ -40,7 +40,7 @@ set hlsearch
 sy on
 se smc=100 "set max highlight columns = 100
 set autochdir
-set noimdisable
+"set noimdisable
 
 set formatoptions=B
 
@@ -53,16 +53,18 @@ set vb t_vb=
 "界面设置{{{2
 set guioptions=e "菜单、左右滚动条、新的标签栏
 set ru "标尺信息
+set nu "标尺信息
 "set statusline=%F%m%r%h%w\ [%l/%L,%v]\ [%p%%] "状态栏内容
 set laststatus=2 "状态栏出现在倒数第二行。
-"set cursorline "高翔当前行,设置在zzz.vim
+set cursorline "高翔当前行,设置在zzz.vim
 
 "}}}
 "设置字体{{{2
 "set gfw=方正准圆_GBK:h10
+set guifont=Monaco:h13
 "set guifont=Anonymous_Pro:h11
 "set guifont=Anonymice_Powerline:h11:cANSI
-set guifont=Monaco:h10
+"set gfw=Monaco:h10
 "set guifont=Source_Code_Pro:h10.5
 "set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
 "set guifont=Ubuntu_Mono:h12:cANSI
@@ -90,6 +92,10 @@ imap <C-V> <esc>"+gpa
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
+
+" Emacs
+inoremap <C-b> <left>
+inoremap <C-f> <right>
 
 nnoremap j gj
 nnoremap k gk
@@ -231,7 +237,7 @@ endfunction
 
 "Airline {{{2
 
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -271,6 +277,16 @@ let g:indentLine_char = '|'
 
 "mystatusline {{{2
 "}}}2
+
+"Markdown{{{2
+
+let g:vim_markdown_no_default_key_mappings=1
+let g:vim_markdown_math=1
+let g:vim_markdown_frontmatter=1
+
+au! filetype md inoremap <buffer>  <C-i> ![]()<left>
+
+"}}}
 
 "Voom{{{2
 map <F11> :Voom<CR>
@@ -354,8 +370,4 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs  = 1
     let g:fencview_autodetect = 0
 "}}}
 "
-
-"Vim Markdown{{{2
-   let g:vim_markdown_folding_disabled=1 
-"}}}
 "}}}
