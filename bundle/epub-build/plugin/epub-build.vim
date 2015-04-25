@@ -283,7 +283,7 @@ for i, u in enumerate(urls, start=1):
     b.append(titles)                          # output the article to vimbuffer
     b.append(texts)                           # output the article to vimbuffer
 
-    vim.command("echo('完成第 " + str(i) + " / " + str(chapters) + " 章')")
+vim.command("echo('完成第 " + str(i) + " / " + str(chapters) + " 章')")
 
 EOF
 endfunction "}}}1
