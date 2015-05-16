@@ -12,7 +12,7 @@ set dy=lastline "显示最多行，不用@@
 set nobackup
 set history=1000
 set showmatch
-set lazyredraw "执行宏的时候不要更新显示
+"set lazyredraw "执行宏的时候不要更新显示
 set autoread
 set spr "Splite the new windows at right
 set nocompatible
@@ -23,8 +23,6 @@ set wildmenu
 "color iceberg
 "color pencil
 "color xoria256
-color solarized
-se background=light
 
 filetype indent on
 
@@ -61,7 +59,8 @@ set cursorline "高翔当前行,设置在zzz.vim
 "}}}
 "设置字体{{{2
 "set gfw=方正准圆_GBK:h10
-set guifont=Monaco:h13
+"set guifont=Source\ Code\ Pro\ for\ Powerline:h13 " OSX 下使用反斜杠处理空格
+set guifont=PragmataPro\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
 "set guifont=Anonymous_Pro:h11
 "set guifont=Anonymice_Powerline:h11:cANSI
 "set gfw=Monaco:h10
@@ -96,9 +95,11 @@ inoremap <C-S> <C-O>:update<CR>
 " Emacs
 inoremap <C-b> <left>
 inoremap <C-f> <right>
+inoremap <C-n> <down>
+inoremap <C-p> <up>
+inoremap <C-e> <esc>A
+inoremap <C-i> <esc>I
 
-nnoremap j gj
-nnoremap k gk
 
 "Convinent >
 nnoremap < <<
@@ -107,6 +108,13 @@ nnoremap > >>
 "Shift > enhance
 vnoremap < <gv
 vnoremap > >gv
+
+"CMD Line
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
 
 "Symblo Auto Complete
 
@@ -118,11 +126,11 @@ vnoremap > >gv
 
 "paragraph jump enhance
 
-vmap { {j
-vmap } }k
+"vmap { {j
+"vmap } }k
 
 "CSS File Auto Jump
-autocmd FileType css inoremap <buffer> { {}<left><CR><esc>O
+autocmd! FileType css inoremap <buffer> { {}<left><CR><esc>O
 
 "Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
@@ -149,10 +157,10 @@ language messages zh_CN.utf-8
 "代码自动补全{{{2
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-set complete-=i
+"set complete-=i
 
 "}}}
 "}}}
@@ -162,15 +170,7 @@ set complete-=i
 vmap qq y:%s/<C-R>"//g
 "}}}
 
-"选中同级缩进{{{2
-
-nnoremap vi vitoj0ok$
-
 "}}}
-
-"快速定位到修改点{{{2
-
-noremap gn /'TARGETS'<CR>:nohl<CR>9xi
 
 "}}}
 
@@ -229,9 +229,9 @@ endfunction
 
 "Neocomplete {{{2
 
-	let g:acp_enableAtStartup = 0
-	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#enable_smart_case = 1
+	"let g:acp_enableAtStartup = 0
+	"let g:neocomplete#enable_at_startup = 1
+	"let g:neocomplete#enable_smart_case = 1
 
 "}}}
 
@@ -239,21 +239,32 @@ endfunction
 
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 0
-let g:airline_left_sep=''
-let g:airline_right_sep=''
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
 let g:airline_detect_iminsert=1
 let g:airline_theme='solarized'
-let g:airline_inactive_collapse=1
+let g:airline_inactive_collapse=0
 
-"let g:airline_section_a       (mode, paste, iminsert)
-"let g:airline_section_b       (hunks, branch)
-"let g:airline_section_c       (bufferline or filename)
-"let g:airline_section_gutter  (readonly, csv)
-"let g:airline_section_x       (tagbar, filetype, virtualenv)
-"let g:airline_section_y       (fileencoding, fileformat)
-"let g:airline_section_z       (percentage, line number, column number)
+  let g:airline_left_sep = ''
+  let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_symbols.linenr = '␊'
+  let g:airline_symbols.linenr = '␤'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = 'ρ'
+  let g:airline_symbols.paste = 'Þ'
+  let g:airline_symbols.paste = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+
+let g:airline_section_a       (mode, paste, iminsert)
+let g:airline_section_b       (hunks, branch)
+let g:airline_section_c       (bufferline or filename)
+let g:airline_section_gutter  (readonly, csv)
+let g:airline_section_x       (tagbar, filetype, virtualenv)
+let g:airline_section_y       (fileencoding, fileformat)
+let g:airline_section_z       (percentage, line number, column number)
 "let g:airline_section_warning (syntastic, whitespace)
 
 "}}}
@@ -278,13 +289,23 @@ let g:indentLine_char = '|'
 "mystatusline {{{2
 "}}}2
 
+"solarized{{{2
+
+color solarized
+se background=light
+g:solarized_visibility= "high"
+
+"}}}2
+
+
 "Markdown{{{2
 
 let g:vim_markdown_no_default_key_mappings=1
 let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=0
 
-au! filetype md inoremap <buffer>  <C-I> ![]()<left>
+autocmd! filetype md inoremap <buffer> <C-I> ![](./)<left>
+autocmd! filetype mkd inoremap <buffer> <C-I> ![](./)<left>
 
 "}}}
 
