@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*- 
-# A simple script for download the novel text and images form www.lightnovel.cn
+# A simple script for downloading novel text
 
 import urllib2
 import os
