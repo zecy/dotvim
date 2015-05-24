@@ -1,0 +1,2 @@
+Colorizer-0.7.vmb: call delete('e:\Program Files\Vim\vimfiles\bundle\colorizer/plugin/ColorizerPlugin.vim')|call delete('e:\Program Files\Vim\vimfiles\bundle\colorizer/doc/Colorizer.txt')|call delete('e:\Program Files\Vim\vimfiles\bundle\colorizer/autoload/Colorizer.vim')
+Colorizer-0.8.vmb: call delete('e:\Program Files\Vim\vimfiles\bundle\colorizer\/plugin/ColorizerPlugin.vim')|call delete('e:\Program Files\Vim\vimfiles\bundle\colorizer\/doc/Colorizer.txt')|call delete('e:\Program Files\Vim\vimfiles\bundle\colorizer\/autoload/Colorizer.vim')
