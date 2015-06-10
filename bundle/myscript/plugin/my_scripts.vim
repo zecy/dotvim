@@ -2,7 +2,7 @@ autocmd! bufwritepost _vimrc source %
 
 function SendSelectedToCMD()
     normal vy
-    :silent %s/<C-R>"//ge
+    :silent %s,<C-R>",,ge
 endfunction
 
 function Explores(name)
@@ -17,7 +17,7 @@ endfunction
 
 function KeepCV()
     KeepLines .*\n.*声 -.*
-    :silent %s/.*声\ze - \|^$\n//ge
+    :silent %s,.*声\ze - \|^$\n,,ge
 endfunction
 
 command! KeepCV call KeepCV()
@@ -130,13 +130,25 @@ function DateTrans()
 
     :silent %s/\d\zs[年月]\ze\d/\//ge
     :silent %s/\d\zs日.*//ge
-    :silent %s/24\ze:/0/ge
-    :silent %s/25\ze:/1/ge
-    :silent %s/26\ze:/2/ge
-    :silent %s/27\ze:/3/ge
-    :silent %s/28\ze:/4/ge
-    :silent %s/[金木水火土日月]曜 \| - \|（.\{-}）//ge
+    :silent %s/24\ze:/0/e
+    :silent %s/25\ze:/1/e
+    :silent %s/26\ze:/2/e
+    :silent %s/27\ze:/3/e
+    :silent %s/28\ze:/4/e
+    :silent %s/[金木水火土日月]曜 \| - \|（.\{-}）//e
+    :silent %s/（.*）//e
     :silent %s/ //ge
+
+    let v:errmsg = ""
+    silent! /\d\{4}.*\n^$\n\+/
+    while v:errmsg == ""
+        silent! %s/\v(\d{4}.*\n)\zs\n\ze\n/\1/g
+    endwhile
+
+    :silent %s/^\d\{4}.*\n\zs\n//e
+    :call setline(line('$')+1,'')
+    :g/\d\{4}/m$
+    :norm dd
 endfunction
 
 command! DateTrans call DateTrans()
