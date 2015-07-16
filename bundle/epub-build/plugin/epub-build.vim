@@ -230,8 +230,6 @@ for u in indexs:
     texts   = unicode(content).split(u'\n')       # covert the 'tag' to 'unicode', an split to 'list'
     b.append(texts)                            # output the article to vimbuffer
 
-    vim.command("echo('完成第 " + str(i) + " / " + str(chapters) + " 章')")
-
 EOF
 endfunction "}}}1
 
@@ -245,47 +243,48 @@ function DownloadSyosetu() "{{{1
 
 " VimL 部分，整理源代码。
 
-:silent v/href/d
-:silent %s/.*href="\(.*\)">.*/http:\/\/ncode.syosetu.com\1
+silent v/href/d
+silent %s,.*href="\(.*\)">.*,http://ncode.syosetu.com\1,e
+silent ! ~/.vim/bundle/epub-build/plugin/py/download-syosetu.py
 
 " Python 部分，用于下载
-python << EOF
-#!/usr/bin/python
-# -*- coding: UTF-8 -*- 
-# A simple script for download the novel text and images form www.lightnovel.cn
-
-import vim
-import os
-import sys
-sys.path.append('/Users/zecy/.vim/bundle/epub-build/plugin/py')
-import getpage
-
-# All the scripts are run on the current vim buffer
-b = vim.current.buffer
-
-urls = b[0:] # put the index page url on the first on the current buffer and get it
-
-chapters = len(b)
-
-b[:] = None
-
-# get the article from each chapter page
-
-
-for i, u in enumerate(urls, start=1):
-    title = getpage.get_page_text(u, 'novel_subtitle')   # 'novel_subtitle' is the class of article block
-    text  = getpage.get_page_text(u, 'novel_view')       # 'novel_view' is the class of article block
-    
-    title   = '* ' + title.get_text()                # output the text whitout tags, the result is unicode
-    content = text.get_text()                 # output the text whitout tags, the result is unicode
-    titles  = unicode(title)                  # covert the 'tag' to 'unicode', an split to 'list'
-    texts   = unicode(content).split(u'\n')   # covert the 'tag' to 'unicode', an split to 'list'
-    b.append(titles)                          # output the article to vimbuffer
-    b.append(texts)                           # output the article to vimbuffer
-
-vim.command("echo('完成第 " + str(i) + " / " + str(chapters) + " 章')")
-
-EOF
+"python << EOF
+"#!/usr/bin/python
+"# -*- coding: UTF-8 -*- 
+"# A simple script for download the novel text and images form www.lightnovel.cn
+"
+"import vim
+"import os
+"import sys
+"sys.path.append('/Users/zecy/.vim/bundle/epub-build/plugin/py')
+"import getpage
+"
+"# All the scripts are run on the current vim buffer
+"b = vim.current.buffer
+"
+"urls = b[0:] # put the index page url on the first on the current buffer and get it
+"
+"chapters = len(b)
+"
+"b[:] = None
+"
+"# get the article from each chapter page
+"
+"
+"for i, u in enumerate(urls, start=1):
+"    title = getpage.get_page_text(u, 'novel_subtitle')   # 'novel_subtitle' is the class of article block
+"    text  = getpage.get_page_text(u, 'novel_view')       # 'novel_view' is the class of article block
+"    
+"    title   = '* ' + title.get_text()                # output the text whitout tags, the result is unicode
+"    content = text.get_text()                 # output the text whitout tags, the result is unicode
+"    titles  = unicode(title)                  # covert the 'tag' to 'unicode', an split to 'list'
+"    texts   = unicode(content).split(u'\n')   # covert the 'tag' to 'unicode', an split to 'list'
+"    b.append(titles)                          # output the article to vimbuffer
+"    b.append(texts)                           # output the article to vimbuffer
+"
+"vim.command("echo('完成第 " + str(i) + " / " + str(chapters) + " 章')")
+"
+"EOF
 endfunction "}}}1
 
 function EpubZip() "{{{1
