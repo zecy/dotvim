@@ -17,6 +17,7 @@ set autoread
 set spr "Splite the new windows at right
 set nocompatible
 set wildmenu
+set showcmd
 
 "color molokai
 "let g:molokai_original=0
@@ -245,18 +246,18 @@ let g:airline_detect_iminsert=1
 let g:airline_theme='solarized'
 let g:airline_inactive_collapse=0
 
-  let g:airline_left_sep = ''
-  let g:airline_left_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_symbols.linenr = '␊'
-  let g:airline_symbols.linenr = '␤'
-  let g:airline_symbols.linenr = '¶'
-  let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.paste = 'ρ'
-  let g:airline_symbols.paste = 'Þ'
-  let g:airline_symbols.paste = '∥'
-  let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_sep = ''
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline_section_a       (mode, paste, iminsert)
 let g:airline_section_b       (hunks, branch)
@@ -264,8 +265,9 @@ let g:airline_section_c       (bufferline or filename)
 let g:airline_section_gutter  (readonly, csv)
 let g:airline_section_x       (tagbar, filetype, virtualenv)
 let g:airline_section_y       (fileencoding, fileformat)
-let g:airline_section_z       (percentage, line number, column number)
-"let g:airline_section_warning (syntastic, whitespace)
+"let g:airline_section_z       (percentage, line number, column number)
+let g:airline_section_z       (percentage, %l/%L, column number)
+let g:airline_section_warning (syntastic, whitespace)
 
 "}}}
 
@@ -285,9 +287,6 @@ map <F10> :NERDTree<CR>
 "Indent Lines {{{2
 let g:indentLine_char = '|'
 "}}}
-
-"mystatusline {{{2
-"}}}2
 
 "solarized{{{2
 
