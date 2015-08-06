@@ -24,7 +24,7 @@ function EpubBuild() "{{{1
         :silent call AddTitles()
     elseif b == 2
         :let c = input("输入标题正则表达式：")
-        :execute "silent %s/<p>\\(序\\(章\\|幕\\|\\)\\|后记\\|後記\\|" . c . "\\)<\\/p>/<title>\\1<\\/title>\\r<h1>\\1<\\/h1>/ge"
+        :call AddTitles(c)
     elseif b == 3
         :echo "请使用手动方式添加标题"
         :return
