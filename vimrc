@@ -114,8 +114,6 @@ vnoremap > >gv
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
-cnoremap <Esc>b <S-Left>
-cnoremap <Esc>f <S-Right>
 
 "Symblo Auto Complete
 
@@ -168,7 +166,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "自定义函数{{{1
 
 "选中内容进行全局替换{{{2
-vmap qq y:%s/<C-R>"//g
+vmap qq y:%s`<C-R>"``g<left><left>
 "}}}
 
 "}}}
