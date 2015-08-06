@@ -172,8 +172,14 @@ function AddTitle() "{{{1
     :nohl
 endfunction "}}}1
 
-function AddTitles() "{{{1
-    :%s/<p>\(\(序\|终\)\(章\|幕\)\|后记\|後記\|第.\{,3}\(章\|幕\).*\)<\/p>/<title>\1<\/title>\r<h1>\1<\/h1>/ge
+function AddTitles(pattern) "{{{1
+
+    if a:pattern != ""
+        exec "%s`<p>\\(" . a:pattern . "\\)</p>`<title>\\1</title>\\r<h1>\\1</h1>`g"
+    else
+        %s`\v\<p\>([序终終间][章幕]|幕间|后记|後記|第.{,3}[章幕话].*)\</p\>`<title>\1</title>\r<h1>\1</h1>`ge
+    endif
+
 endfunction "}}}1
 
 function TiebaClean() "{{{1
@@ -204,7 +210,8 @@ import getpage
 b = vim.current.buffer
 
 # Website url
-lk = 'http://lknovel.lightnovel.cn'
+#lk = 'http://lknovel.lightnovel.cn'
+lk = 'www.linovel.com'
 
 url = b[0] # put the index page url on the first on the current buffer and get it
 chapters = len(b)
