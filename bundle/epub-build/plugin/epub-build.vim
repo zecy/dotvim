@@ -21,10 +21,10 @@ function EpubBuild() "{{{1
     :call inputrestore()
 
     if b == 1
-        :silent call AddTitles()
+        :silent call AddTitles("")
     elseif b == 2
         :let c = input("输入标题正则表达式：")
-        :call AddTitles(c)
+        :exec 'call AddTitles("' . c . '")'
     elseif b == 3
         :echo "请使用手动方式添加标题"
         :return
