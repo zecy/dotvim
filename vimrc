@@ -1,4 +1,5 @@
 "Vim Plugin Manger{{{1
+let g:pathogen_disabled = ['airline']
 call pathogen#infect()
 "source! $HOME/.vim/vimrc
 "}}}
@@ -18,6 +19,7 @@ set spr "Splite the new windows at right
 set nocompatible
 set wildmenu
 set showcmd
+set cpo += > "附加到寄存器时，在附加文本之前加上换行符。
 
 "color molokai
 "let g:molokai_original=0
@@ -182,26 +184,9 @@ nmap <leader>ch :call Explores("ch")<CR>
 
 "Full Screen{{{2
 
-let g:MyVimLib = 'gvimfullscreen.dll'
-map <F12> <Esc>:call libcallnr(g:MyVimLib, "ToggleFullScreen", 0)<CR>
+"let g:MyVimLib = 'gvimfullscreen.dll'
+"map <F12> <Esc>:call libcallnr(g:MyVimLib, "ToggleFullScreen", 0)<CR>
 "au GUIEnter * call libcallnr('vimtweak.dll', "SetAlpha", 240)
-
-"}}}
-
-"清除SRT字幕内容 {{{2
-nmap <F2> :call Clean_Srt()<CR>
-function! Clean_Srt()
-    "文本处理
-    silent %s/^\d\+\n\d\{2}:.*-->.*\n//ge "删除序号和时间轴
-    silent %s/<.\{-}>//ge                 "删除尖括号内容
-    silent %s/^$\n//ge                    "删除隔行
-    silent %s/[^.!?]\zs\n/ /ge            "拼接断行
-    silent %s/\n/&&/g                     "重新添加隔行
-
-    "保存副本
-    let filename = substitute(bufname("%"), ".srt", "", "")
-    exec "w " . filename . ".cleaned.txt"
-endfunction
 
 "}}}
 
@@ -231,41 +216,43 @@ endfunction
 	"let g:acp_enableAtStartup = 0
 	"let g:neocomplete#enable_at_startup = 1
 	"let g:neocomplete#enable_smart_case = 1
+    "
 
 "}}}
 
 "Airline {{{2
 
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_powerline_fonts = 0
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
-let g:airline_detect_iminsert=1
-let g:airline_theme='solarized'
-let g:airline_inactive_collapse=0
-
-let g:airline_left_sep = ''
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-let g:airline_section_a       (mode, paste, iminsert)
-let g:airline_section_b       (hunks, branch)
-let g:airline_section_c       (bufferline or filename)
-let g:airline_section_gutter  (readonly, csv)
-let g:airline_section_x       (tagbar, filetype, virtualenv)
-let g:airline_section_y       (fileencoding, fileformat)
+"let g:airline#extensions#tabline#enabled = 1
+"let g:aireline_extensions = []
+"let g:airline_powerline_fonts = 0
+"let g:airline_detect_modified=1
+"let g:airline_detect_paste=1
+"let g:airline_detect_iminsert=1
+"let g:airline_theme='solarized'
+"let g:airline_inactive_collapse=0
+"
+"let g:airline_left_sep = ''
+"let g:airline_left_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
+"
+"let g:airline_section_a       (mode, paste, iminsert)
+"let g:airline_section_b       (hunks, branch)
+"let g:airline_section_c       (bufferline or filename)
+"let g:airline_section_gutter  (readonly, csv)
+"let g:airline_section_x       (tagbar, filetype, virtualenv)
+"let g:airline_section_y       (fileencoding, fileformat)
 "let g:airline_section_z       (percentage, line number, column number)
-let g:airline_section_z       (percentage, %l/%L, column number)
-let g:airline_section_warning (syntastic, whitespace)
+"let g:airline_section_z       (percentage, %l/%L, column number)
+"let g:airline_section_warning (syntastic, whitespace)
 
 "}}}
 
@@ -274,6 +261,7 @@ let g:airline_section_warning (syntastic, whitespace)
 "}}}
 
 "Vim Outilner{{{2
+au! BufRead,BufNewFile *.votl set filetype=votl
 au! filetype votl map <buffer> <C-a> ,,cx
 au filetype votl normal zM
 "}}}
