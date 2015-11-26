@@ -182,6 +182,13 @@ function AddTitles(pattern) "{{{1
 
 endfunction "}}}1
 
+function TitleCheck() "{{{1
+
+    vimgrep /<title>/ %
+    copen
+
+endfunction "}}}1
+
 function TiebaClean() "{{{1
     :let @a=""
     :silent g/<cc>\_.\{-}<\/cc>/y A
