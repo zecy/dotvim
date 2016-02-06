@@ -19,7 +19,7 @@ set spr "Splite the new windows at right
 set nocompatible
 set wildmenu
 set showcmd
-set cpo += > "附加到寄存器时，在附加文本之前加上换行符。
+set cpo+=> "附加到寄存器时，在附加文本之前加上换行符。
 
 "color molokai
 "let g:molokai_original=0
@@ -63,7 +63,9 @@ set cursorline "高翔当前行,设置在zzz.vim
 "设置字体{{{2
 "set gfw=方正准圆_GBK:h10
 "set guifont=Source\ Code\ Pro\ for\ Powerline:h13 " OSX 下使用反斜杠处理空格
-set guifont=PragmataPro\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+"set guifont=PragmataPro\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+set macligatures
+set guifont=Fira\ Code:h12
 "set guifont=Anonymous_Pro:h11
 "set guifont=Anonymice_Powerline:h11:cANSI
 "set gfw=Monaco:h10
@@ -98,10 +100,10 @@ inoremap <C-S> <C-O>:update<CR>
 " Emacs
 inoremap <C-b> <left>
 inoremap <C-f> <right>
-inoremap <C-n> <down>
-inoremap <C-p> <up>
+inoremap <C-n> <esc>gja
+inoremap <C-p> <esc>gka
 inoremap <C-e> <esc>A
-inoremap <C-i> <esc>I
+inoremap <C-a> <esc>I
 
 
 "Convinent >
@@ -278,7 +280,7 @@ let g:indentLine_char = '|'
 
 color solarized
 se background=light
-g:solarized_visibility= "high"
+let g:solarized_visibility= "high"
 
 "}}}2
 
@@ -289,8 +291,11 @@ let g:vim_markdown_no_default_key_mappings=1
 let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=0
 
-autocmd! filetype md inoremap <buffer> <C-I> ![](./)<left>
-autocmd! filetype mkd inoremap <buffer> <C-I> ![](./)<left>
+autocmd! filetype md map <F11> :Voom markdown<CR>
+autocmd! filetype mkd map <F11> :Voom markdown<CR>
+
+"autocmd! filetype md inoremap <buffer> <C-I> ![](./)<left>
+"autocmd! filetype mkd inoremap <buffer> <C-I> ![](./)<left>
 
 "}}}
 
