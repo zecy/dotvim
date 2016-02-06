@@ -145,8 +145,8 @@ function GetImages() "{{{1
     :silent g/http.*\(jpg\|png\|gif\)/y A
     :tabnew
     :normal "apgg2dd
+    :sort u
     :normal ggVG"+y
-
 endfunction "}}}1
 
 function LkClean() "{{{1
