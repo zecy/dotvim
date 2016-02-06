@@ -1,11 +1,11 @@
 autocmd! bufwritepost _vimrc source %
 
-function SendSelectedToCMD()
+function SendSelectedToCMD() "{{{1
     normal vy
     :silent %s,<C-R>",,ge
-endfunction
+endfunction "}}}1
 
-function Explores(name)
+function Explores(name) "{{{1
     let file = expand("%:p")
     exec ":update " . file
     let l:browsers = {
@@ -13,35 +13,35 @@ function Explores(name)
         \"ff":"E:/Program Files/Mozilla Firefox/firefox.exe"
     \}
 	exec ":silent !start ". "\"" . l:browsers[a:name] . "\"" . " file://" . "\"%:p\""
-endfunction
+endfunction "}}}1
 
-function KeepCV()
+function KeepCV() "{{{1
     KeepLines .*\n.*声 -.*
     :silent %s,.*声\ze - \|^$\n,,ge
-endfunction
+endfunction "}}}1
 
 command! KeepCV call KeepCV()
 
-function PreSymbloClean()
+function PreSymbloClean() "{{{1
     :silent %s/\( -\|:\| :\|：\|　\|\t\).*//ge
-endfunction
+endfunction "}}}1
 
-function AfterSymbloClean()
+function AfterSymbloClean() "{{{1
     :silent %s/.*\(- \|:\|: \|：\|　\|\t\)//ge
-endfunction
+endfunction "}}}1
 
-function ListSplit()
+function ListSplit() "{{{1
     :silent %s/\s\+$\|　\+$//ge
     :silent %s/\( - \|:\| :\|: \|：\|　\+\|\t\+\)/\r    /ge
     :silent %s/<dd>/\r    /ge
     :silent %s/^$\n\|<.\{-}>//ge
     :call append(line('$'),'')
     :silent g/^ \+\|^　\+\|^\t\+/m$
-endfunction
+endfunction "}}}1
 
 command! ListSplit call ListSplit()
 
-function StaffTrans()
+function StaffTrans() "{{{1
     :silent %s/^ \+//ge
     :silent %s/^原作$/原作/ge
     :silent %s/^企画$/计划/ge
@@ -83,11 +83,11 @@ function StaffTrans()
     :silent %s/プランニングマネージャー/策划经理/ge
     :silent %s/アニメーション制作/动画制作/ge
     :silent %s/^制作$/动画制作/ge
-endfunction
+endfunction "}}}1
 
 command! StaffTrans call StaffTrans()
 
-function DateTrans()
+function DateTrans() "{{{1
 
     silent %s/\t/\r    /ge
 
@@ -149,11 +149,11 @@ function DateTrans()
     :call setline(line('$')+1,'')
     :g/\d\{4}/m$
     :norm dd
-endfunction
+endfunction "}}}1
 
 command! DateTrans call DateTrans()
 
-function! KeepLines(pattern)
+function! KeepLines(pattern) "{{{1
     let pattern = a:pattern
     let hits = []
     "exec '%s/' . pattern . '/\=len(add(hits, submatch(0))) ? submatch(0): ""/ge'
@@ -161,5 +161,5 @@ function! KeepLines(pattern)
     let str = join(hits, "\n") . "\n"
     %d
     put! = str
-endfunction
+endfunction "}}}1
 command! -nargs=1 KeepLines call KeepLines(<f-args>)
