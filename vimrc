@@ -177,28 +177,6 @@ vmap qq y:%s`<C-R>"``g<left><left>
 
 "}}}
 
-"调用不同浏览器{{{2
-
-nmap <leader>ff :call Explores("ff")<CR>
-nmap <leader>ch :call Explores("ch")<CR>
-
-"}}}
-
-"Full Screen{{{2
-
-"let g:MyVimLib = 'gvimfullscreen.dll'
-"map <F12> <Esc>:call libcallnr(g:MyVimLib, "ToggleFullScreen", 0)<CR>
-"au GUIEnter * call libcallnr('vimtweak.dll', "SetAlpha", 240)
-
-"}}}
-
-"小窗口
-
-function! SmallScreen()
-    se lines=15 | se columns=70
-endfunction
-
-"}}}
 
 "}}}
 
