@@ -60,9 +60,9 @@ def symbolchange(t):
     t = re.sub(u'‘', u"『", t)
     t = re.sub(u'’', u"』", t)
     # t = re.sub(u'[‘’]', u"'", t)
-    t = string.replace(t, "&", "&amp;")
-    t = re.sub(u'[<〈]', '&lt;', t) 
-    t = re.sub(u'[>〉]', '&gt;', t)
+    #t = string.replace(t, "&", "&amp;")
+    #t = re.sub(u'[<〈]', '&lt;', t) 
+    #t = re.sub(u'[>〉]', '&gt;', t)
     t = re.sub(u'…+|。{2,}', '...', t)
     t = re.sub(u'^ +', '', t)
     t = re.sub(u'(\n)+', '\n', t)
@@ -129,16 +129,6 @@ function Booksplite() "{{{1
     execute "silent ".starts[starts_num].",$"."w c".c.".xhtml"
 endfunction "}}}1
 
-"function LkClean() {{{1
-    ":let @a=""
-    ":silent g/<td.*class="t_f".*>/;/<\/td>/y A
-    ":w
-    ":e new.xhtml
-    ":normal ap
-    ":let @a=""
-    "normal kdd
-"endfunction }}}1
-
 function GetImages() "{{{1
     :silent %s/http.*\(jpg\|png\|gif\)/\r&\r/g
     :let @a=""
@@ -164,6 +154,15 @@ function LkOLClean() "{{{1
     :silent %s/^\(.*$\)/<p>\1<\/p>/ge
     :silent %s/<p>.*http.*\/\(.*\(jpg\|gif\|png\)\)<\/p>/<img src="images\/\1" \/>/ge
 endfunction "}}}1
+
+function EpubClean() "{{{1
+
+    :silent g/\vxml|http|html|head|link|body|script/d
+    :silent %s`<br />\|<div.\{-}>\|</div>\|<span.\{-}>\|</span>\| alt=".\{-}"\|\.\./``ge
+    :silent g`<p></p>\|<title></title>\|^$`d
+    :silent call SymbolChange()
+
+endfunction "}}}
 
 function AddTitle() "{{{1
     :silent t.
