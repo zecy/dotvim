@@ -157,7 +157,7 @@ endfunction "}}}1
 
 function EpubClean() "{{{1
 
-    :silent g/\vxml|http|html|head|link|body|script/d
+    :silent g/\vxml|http|html|head|link|body|script|meta/d
     :silent %s`<br />\|<div.\{-}>\|</div>\|<span.\{-}>\|</span>\| alt=".\{-}"\|\.\./``ge
     :silent g`<p></p>\|<title></title>\|^$`d
     :silent call SymbolChange()
