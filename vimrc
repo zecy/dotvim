@@ -26,6 +26,8 @@ set cpo+=> "附加到寄存器时，在附加文本之前加上换行符。
 "color iceberg
 "color pencil
 "color xoria256
+color gruvbox
+let g:gruvbox_contrast_light = 'hard'
 
 filetype indent on
 
@@ -109,6 +111,7 @@ inoremap <C-a> <esc>I
 "Convinent >
 nnoremap < <<
 nnoremap > >>
+nnoremap V 0v$h
 
 "Shift > enhance
 vnoremap < <gv
@@ -256,9 +259,9 @@ let g:indentLine_char = '|'
 
 "solarized{{{2
 
-color solarized
-se background=light
-let g:solarized_visibility= "high"
+"color solarized
+"se background=light
+"let g:solarized_visibility= "high"
 
 "}}}2
 
