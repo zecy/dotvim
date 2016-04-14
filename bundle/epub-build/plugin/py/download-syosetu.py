@@ -22,22 +22,27 @@ chapter_len = str(len(chapters))
 print "开始下载……"
 
 for i, u in enumerate(urls, start=1):
+
+    num_format = '%0' + chapter_len + 'd'
+
+    chapter = num_format%int(u.split('/')[-2])
+
     title = getpage.get_page_text(u, 'novel_subtitle')     # 'novel_subtitle' is the class of article block
+
     text  = getpage.get_page_text_by_ID(u, 'novel_honbun')   # 'novel_view' is the class of article block
     
     title   = title.get_text()                             # output the text whitout tags, the result is unicode
+
     content = text.get_text()                              # output the text whitout tags, the result is unicode
+
     titles  = unicode(title)                               # covert the 'tag' to 'unicode'
     #texts   = unicode(content).split(u'\n')               # covert the 'tag' to 'unicode', an split to 'list'
     texts   = unicode(content)                             # covert the 'tag' to 'unicode'
 
     titles = titles.replace(u'/',u'／')
 
-    chap_con = u'* ' + titles + u'\n\n' + texts
+    chap_con = u'* ' + chapter + ' ' + titles + u'\n\n' + texts
 
-    num_format = '%0' + chapter_len + 'd'
-
-    chapter = num_format%i
 
     chap_out = open(chapter + ' ' + titles + '.txt','w')
     chap_out.write(chap_con.encode('utf-8'))
