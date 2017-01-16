@@ -65,9 +65,10 @@ set cursorline "高翔当前行,设置在zzz.vim
 "设置字体{{{2
 "set gfw=方正准圆_GBK:h10
 "set guifont=Source\ Code\ Pro\ for\ Powerline:h13 " OSX 下使用反斜杠处理空格
+set guifont=Inziu\ Iosevka\ SC:h13
 "set guifont=PragmataPro\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
 set macligatures
-set guifont=Fira\ Code:h12
+"set guifont=Fira\ Code:h12
 "set guifont=Anonymous_Pro:h11
 "set guifont=Anonymice_Powerline:h11:cANSI
 "set gfw=Monaco:h10
