@@ -138,7 +138,7 @@ function GetImages() "{{{1
     :tabnew
     :normal "apgg2dd
     :sort u
-    :normal ggVG"+y
+    :normal ggVG$"+y
 endfunction "}}}1
 
 function LkClean() "{{{1
