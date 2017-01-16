@@ -5,11 +5,13 @@ function EpubBuild() "{{{1
 
     if a == 1
         :silent call LkClean()
-    elseif a == 2
-        :silent call LkOLClean()
     elseif a == 3
-        :silent call DoctoEpub()
+        :silent call EpubClean()
+    elseif a == 3
+        :silent call LkOLClean()
     elseif a == 4
+        :silent call DoctoEpub()
+    elseif a == 5
         :silent call TiebaClean()
     endif
 
