@@ -42,6 +42,7 @@ f.close()
 
 book_title = html_doc[0]    #后面构建opf文件时用
 book_title = book_title.replace('\n','')
+book_title = book_title.replace('\r','')
 book_author = html_doc[1]   #后面构建opf文件时用
 book_author = book_author.replace('\n','')
 chap_title_list = []        #构建一个list，存放章节标题，后面构建toc.ncx时用
