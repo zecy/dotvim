@@ -20,11 +20,17 @@ def get_the_dom(url):
 
     request = urllib2.Request(url, '', headers)
 
-    htm = urllib2.urlopen(request)
+    try:
+        htm = urllib2.urlopen(request)
 
-    dom = BeautifulSoup(htm)
+        dom = BeautifulSoup(htm)
 
-    return dom
+        return dom
+    
+    except urllib2.URLError, e:
+        if hasattr(e, "reason"):
+            print u'链接失败，错误原因',e.reason
+            return None
 
 def get_page_index(index_page_url, ele_class):
 
