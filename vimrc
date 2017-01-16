@@ -177,12 +177,18 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 vmap qq y:%s`<C-R>"``g<left><left>
 "}}}
 
-"}}}
-
-"}}}
-
-
-"}}}
+"智能行首{{{1
+"如果段落有缩进，先去到段落首位
+"再按一次去到行首
+function! ToggleHomeZero()
+    let pos = getpos('.')
+    execute "normal! ^"
+    if pos == getpos('.')
+        execute "normal! 0"
+    endif
+endfunction
+nnoremap 0 :call ToggleHomeZero()<CR>
+"}}}1
 
 "==================插件设置==========================
 
