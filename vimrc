@@ -1,5 +1,5 @@
 "Vim Plugin Manger{{{1
-let g:pathogen_disabled = ['airline']
+"let g:pathogen_disabled = ['airline']
 call pathogen#infect()
 "source! $HOME/.vim/vimrc
 "}}}
