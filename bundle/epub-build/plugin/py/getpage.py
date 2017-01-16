@@ -56,6 +56,16 @@ def get_page_text(page_url, ele_class):
 
     return content
 
+def get_page_texts(page_url, ele_class):
+
+    #TEXT = []
+
+    dom = get_the_dom(page_url)
+
+    content = dom.find_all(class_=ele_class)
+
+    return content
+
 def get_page_text_by_ID(page_url, ele_id):
 
     dom = get_the_dom(page_url)
