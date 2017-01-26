@@ -303,5 +303,5 @@ silent ! ~/.vim/bundle/epub-build/plugin/py/download-syosetu.py
 endfunction "}}}1
 
 function EpubZip() "{{{1
-    silent ! ~/.vim/bundle/epub-build/plugin/py/strucreat.py
+    silent ! python3 ~/.vim/bundle/epub-build/plugin/py/strucreat.py
 endfunction "}}}1

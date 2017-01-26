@@ -260,6 +260,7 @@ autocmd! filetype mkd map <F11> :Voom markdown<CR>
 
 "Voom{{{2
 map <F11> :Voom<CR>
+let g:voom_python_versions = [3,2]
 "}}}
 
 "Emmet 扩展设施{{{2
