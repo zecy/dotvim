@@ -61,11 +61,10 @@ def symbolchange(t):
     t = re.sub(u'[\]”】]', u'」', t)
     t = re.sub(u'‘', u"『", t)
     t = re.sub(u'’', u"』", t)
-    # t = re.sub(u'[‘’]', u"'", t)
-    #t = string.replace(t, "&", "&amp;")
-    #t = re.sub(u'[<〈]', '&lt;', t) 
-    #t = re.sub(u'[>〉]', '&gt;', t)
+    #t = re.sub(u'[‘’]', u"'", t)
+    t = string.replace(t, "&", u"＆")
     t = re.sub(u'…+|。{2,}', '...', t)
+    t = re.sub(u'—+', u'——', t)
     t = re.sub(u'^ +', '', t)
     t = re.sub(u'(\n)+', '\n', t)
     t = string.replace(t, u"：", u":")
@@ -74,6 +73,12 @@ def symbolchange(t):
     t = string.replace(t, u"，", u",")
     t = string.replace(t, u"！", u"!")
     t = string.replace(t, u"？", u"?")
+    t = string.replace(t, u"!?", u"?!")
+    t = string.replace(t, "<", u"〈") 
+    t = string.replace(t, ">", u"〉")
+    t = re.sub(u'([—.])[!?。]+', u'\g<1>', t)
+    t = re.sub(u'(—)\.+', u'\g<1>', t)
+    t = re.sub(u'(\.)—+', u'\g<1>', t)
 
     return t
 
