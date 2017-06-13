@@ -57,20 +57,22 @@ t = t.decode("UTF-8")
 def symbolchange(t):
 
     t = re.sub(u'( |\t|　)+', u' ', t)
+    t = re.sub(u' +$', '', t)
     t = re.sub(u'[\[“【]', u'「', t)
     t = re.sub(u'[\]”】]', u'」', t)
     t = re.sub(u'‘', u"『", t)
     t = re.sub(u'’', u"』", t)
-    #t = re.sub(u'[‘’]', u"'", t)
+    # t = re.sub(u'[‘’]', u"'", t)
     t = string.replace(t, "&", u"＆")
-    t = re.sub(u'…+|。{2,}', '...', t)
+    # t = re.sub(u'…+|。{2,}', '...', t)
+    t = re.sub(u'…+|。{2,}|\.{2,}', u'…', t)
     t = re.sub(u'—+', u'——', t)
     t = re.sub(u'^ +', '', t)
-    t = re.sub(u'(\n)+', '\n', t)
+    t = re.sub(u'(\n)+', u'\n', t)
     t = string.replace(t, u"：", u":")
     t = string.replace(t, u"（", u"(")
     t = string.replace(t, u"）", u")")
-    t = string.replace(t, u"，", u",")
+    # t = string.replace(t, u"，", u",")
     t = string.replace(t, u"！", u"!")
     t = string.replace(t, u"？", u"?")
     t = string.replace(t, u"!?", u"?!")
@@ -95,6 +97,7 @@ EOF
 
 :silent %s/^ \+//ge
 :silent %s/^$\n//ge
+:silent %s`[^"!?.)——。！？”……）＊※☆★□■♢\*]\zs\ze」$`。`ge
 endfunction "}}}1
 
 function SentenceConnect() "{{{1
