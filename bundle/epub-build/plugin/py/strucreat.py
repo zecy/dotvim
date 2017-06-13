@@ -62,6 +62,8 @@ for j in range(0, len(title_line_nums)):
     chap_title = chap_title.replace('\r', '')    #去除换行符
     chap_title_list.append(chap_title)           #存放每章标题，后面toc.ncx用
     chap_con_start_num = title_line_nums[j] + 1  #取得每章正文开始的行号
+chapter_nums = len(title_line_nums)     # 总共有多少章
+chapter_len = len(str(chapter_nums))    # 总章节数的位数
     if j < len(title_line_nums) - 1:
         chap_con_end_num = title_line_nums[j+1]      #取得每章正文结束的行号，实际多了一行。因为后续要使用list输出
         chap_con_pre = html_doc[chap_con_start_num:chap_con_end_num] #通过行号把正文赋到一个变量。
@@ -69,10 +71,7 @@ for j in range(0, len(title_line_nums)):
         chap_con_pre = html_doc[chap_con_start_num:]
     chap_con = '    '.join(chap_con_pre) #因为上面得到的是list，因此需要转为字符串，加四个空格做缩进，代码更整齐。
     chap_out_pre = tmp.html_tmp(chap_title, chap_con, style_con)
-    if j < 10:
-        num = '0' + str(j)
-    if j >= 10:
-        num = str(j)
+    num = str(j).rjust(chapter_len, '0')
     #chap_out = open('epubobject\\OEBPS\\c' + num + '.xhtml','w')
     chap_out = open('epubobject/OEBPS/c' + num + '.xhtml','w')
     chap_out.write(chap_out_pre)
