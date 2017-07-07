@@ -1,11 +1,11 @@
 function EpubBuild() "{{{1
 
-    :let a = input("第一步\n请选择文本来源：1、轻国 2、轻国在线 3、DOC  4、贴吧：","1")
+    :let a = input("第一步\n请选择文本来源：1、轻国 2、epub 3、轻国在线 4、DOC  5、贴吧：","1")
     :call inputrestore()
 
     if a == 1
         :silent call LkClean()
-    elseif a == 3
+    elseif a == 2
         :silent call EpubClean()
     elseif a == 3
         :silent call LkOLClean()
