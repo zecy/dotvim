@@ -168,9 +168,9 @@ endfunction "}}}1
 
 function EpubClean() "{{{1
 
-    :silent g/\vxml|http|html|head|link|body|script|meta/d
-    :silent %s`<br />\|<div.\{-}>\|</div>\|<span.\{-}>\|</span>\| alt=".\{-}"\|\.\./``ge
-    :silent g`<p></p>\|<title></title>\|^$`d
+    :silent %s`.*/\(.\{-}\.\%(jpg|png\)\)`http://www/\1`ge
+    :silent %s`<.\{-}>``ge
+    :silent g`DOCUTYPE\|http://www.w3c.org`d
     :silent call SymbolChange()
 
 endfunction "}}}
