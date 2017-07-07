@@ -65,7 +65,7 @@ def symbolchange(t):
     # t = re.sub(u'[‘’]', u"'", t)
     t = string.replace(t, "&", u"＆")
     # t = re.sub(u'…+|。{2,}', '...', t)
-    t = re.sub(u'…+|。{2,}|\.{2,}', u'…', t)
+    t = re.sub(u'…+|。{2,}|\.{2,}', u'……', t)
     t = re.sub(u'—+', u'——', t)
     t = re.sub(u'^ +', '', t)
     t = re.sub(u'(\n)+', u'\n', t)
