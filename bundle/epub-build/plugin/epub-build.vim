@@ -35,6 +35,7 @@ function EpubBuild() "{{{1
     ":silent call SentenceConnect()
 
 endfunction "}}}1
+command! Epubbuild call EpubBuild()
 
 function SymbolChange() "{{{1
 
@@ -181,6 +182,7 @@ function AddTitle() "{{{1
     :silent s/^<p>\(.*\)<\/p>$\n^<p>\(.*\)<\/p>$/<title>\2<\/title>\r<h1>\2<\/h1>/e
     :nohl
 endfunction "}}}1
+command! Addtitle call AddTitle()
 
 function AddTitles(pattern) "{{{1
 
@@ -314,3 +316,4 @@ endfunction "}}}1
 function EpubZip() "{{{1
     silent ! python3 ~/.vim/bundle/epub-build/plugin/py/strucreat.py
 endfunction "}}}1
+command! Epubzip call EpubZip()
