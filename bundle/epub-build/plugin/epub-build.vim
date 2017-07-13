@@ -211,6 +211,20 @@ function TiebaClean() "{{{1
     normal kdd
 endfunction "}}}1
 
+function AddArglist() "{{{1
+    :argd *
+    :silent g/^$/d
+    :%j
+    :exec "argadd ".getline('.')
+endfunction
+"}}}1
+
+function CatArglist(path) "{{{1
+    :exec 'silent! argdo! w >> ' . a:path
+"}}}1
+endfunction
+command! -nargs=1 CatArglist call CatArglist(<f-args>)
+
 function DownloadLKOL() "{{{1
 " download the novel from http://lknovel.lightnovel.cn
 
