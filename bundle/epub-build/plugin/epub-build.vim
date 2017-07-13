@@ -169,10 +169,10 @@ endfunction "}}}1
 
 function EpubClean() "{{{1
 
-    :silent %s`.*/\(.\{-}\.\%(jpg|png\)\)`http://www/\1`ge
+    :silent %s`.*/\(.\{-}\.\%(jpg\|png\)\)".*`http://www/\1`ge
     :silent %s`<.\{-}>``ge
-    :silent g`DOCUTYPE\|http://www.w3c.org`d
-    :silent call SymbolChange()
+    :silent g`DOCTYPE\|http://www.w3.org`d
+    :silent call LkClean()
 
 endfunction "}}}
 
