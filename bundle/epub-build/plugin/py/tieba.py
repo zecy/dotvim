@@ -20,7 +20,7 @@ f.close()
 #chapters = urls[-2].split('/')[-1]
 chapter_len = str(len(urls))
 
-print "开始下载……"
+print ("开始下载……")
 
 for i, u in enumerate(urls, start=1):
 
@@ -44,9 +44,7 @@ for i, u in enumerate(urls, start=1):
             for s in t.stripped_strings:
                 content.append(s)                         # output the text whitout tags, the result is unicode
 
-    title   = title.get_text()                             # output the text whitout tags, the result is unicode
-
-    titles  = unicode(title)                               # covert the 'tag' to 'unicode'
+    titles   = title.get_text()                             # output the text whitout tags, the result is unicode
 
     texts   = u'\n'.join(content)                           # convert the list to uicode str
 
@@ -55,10 +53,10 @@ for i, u in enumerate(urls, start=1):
 
     chap_out = open( chapter + ' ' + titles + '.txt','w' )
 
-    chap_out.write( chap_con.encode('utf-8') )
+    chap_out.write( chap_con )
 
     chap_out.close
 
-    print "完成第 " + chapter + " / " + chapter_len + " 个帖子"
+    print ("完成第 " + chapter + " / " + chapter_len + " 个帖子")
 
-print "下载完成\n共 " + chapter_len + " 个帖子"
+print ("下载完成\n共 " + chapter_len + " 个帖子")
