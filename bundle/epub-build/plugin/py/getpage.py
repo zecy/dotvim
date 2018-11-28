@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*- 
 # A simple script for downloading novel text
 
-import urllib2
+from urllib import request
 import os
 from bs4 import BeautifulSoup
 
@@ -14,22 +14,22 @@ from bs4 import BeautifulSoup
 user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36'
 
 
-headers = {'User-Agent': user_agent,'Cookie': 'over18=yes'}
+HEADERS = {'User-Agent': user_agent,'Cookie': 'over18=yes'}
 
 def get_the_dom(url):
 
-    request = urllib2.Request(url, '', headers)
+    res = request.Request(url, headers=HEADERS)
 
     try:
-        htm = urllib2.urlopen(request)
+        htm = request.urlopen(res)
 
-        dom = BeautifulSoup(htm)
+        dom = BeautifulSoup(htm, "html5lib")
 
         return dom
     
-    except urllib2.URLError, e:
+    except request.URLError as e:
         if hasattr(e, "reason"):
-            print u'链接失败，错误原因',e.reason
+            print ('链接失败，错误原因',e.reason)
             return None
 
 def get_page_index(index_page_url, ele_class):
