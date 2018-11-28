@@ -26,6 +26,7 @@ set showcmd
 "color iceberg
 "color pencil
 "color xoria256
+set background=light
 color gruvbox
 let g:gruvbox_contrast_light = 'hard'
 
