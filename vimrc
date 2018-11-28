@@ -19,7 +19,7 @@ set spr "Splite the new windows at right
 set nocompatible
 set wildmenu
 set showcmd
-set cpo+=> "附加到寄存器时，在附加文本之前加上换行符。
+"set cpo+=> "附加到寄存器时，在附加文本之前加上换行符。
 
 "color molokai
 "let g:molokai_original=0
