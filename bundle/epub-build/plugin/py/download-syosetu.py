@@ -19,7 +19,7 @@ chapter_len = str(len(chapters))
 
 # get the article from each chapter page
 
-print "开始下载……"
+print("开始下载……")
 
 for i, u in enumerate(urls, start=1):
 
@@ -31,13 +31,9 @@ for i, u in enumerate(urls, start=1):
 
     text  = getpage.get_page_text_by_ID(u, 'novel_honbun')   # 'novel_view' is the class of article block
     
-    title   = title.get_text()                             # output the text whitout tags, the result is unicode
+    titles   = title.get_text()                             # output the text whitout tags, the result is unicode
 
-    content = text.get_text()                              # output the text whitout tags, the result is unicode
-
-    titles  = unicode(title)                               # covert the 'tag' to 'unicode'
-    #texts   = unicode(content).split(u'\n')               # covert the 'tag' to 'unicode', an split to 'list'
-    texts   = unicode(content)                             # covert the 'tag' to 'unicode'
+    texts = text.get_text()                              # output the text whitout tags, the result is unicode
 
     titles = titles.replace(u'/',u'／')
 
@@ -45,9 +41,10 @@ for i, u in enumerate(urls, start=1):
 
 
     chap_out = open(chapter + ' ' + titles + '.txt','w')
-    chap_out.write(chap_con.encode('utf-8'))
+    #chap_out.write(chap_con.encode('utf-8'))
+    chap_out.write(chap_con)
     chap_out.close
 
-    print "完成第 " + chapter + " / " + chapters + " 章 "
+    print("完成第 " + chapter + " / " + chapters + " 章 ")
 
-print "下载完成\n共 " + chapters + " 章"
+print("下载完成\n共 " + chapters + " 章")
