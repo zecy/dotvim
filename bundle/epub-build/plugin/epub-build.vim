@@ -37,10 +37,16 @@ function EpubBuild() "{{{1
 endfunction "}}}1
 command! Epubbuild call EpubBuild()
 
-function SymbolChange() "{{{1
-
+function Full2half() "{{{1
     silent %s/[１２３４５６７８９０]/\={'１':'1','２':'2','３':'3','４':'4','５':'5','６':'6','７':'7','８':'8','９':'9','０':'0'}[submatch(0)]/ge
     silent %s/[ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ]/\={'Ａ':'A','Ｂ':'B','Ｃ':'C','Ｄ':'D','Ｅ':'E','Ｆ':'F','Ｇ':'G','Ｈ':'H','Ｉ':'I','Ｊ':'J','Ｋ':'K','Ｌ':'L','Ｍ':'M','Ｎ':'N','Ｏ':'O','Ｐ':'P','Ｑ':'Q','Ｒ':'R','Ｓ':'S','Ｔ':'T','Ｕ':'U','Ｖ':'V','Ｗ':'W','Ｘ':'X','Ｙ':'Y','Ｚ':'Z'}[submatch(0)]/ge
+
+endfunction "}}}
+
+function SymbolChange() "{{{1
+
+    :silent call Full2half()
+
 python << EOF
  
 # -*- coding: UTF-8 -*- 
