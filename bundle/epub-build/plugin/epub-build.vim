@@ -69,9 +69,11 @@ def symbolchange(t):
     t = re.sub(u'[\]”】]', u'」', t)
     t = re.sub(u'‘', u"『", t)
     t = re.sub(u'’', u"』", t)
-    # t = re.sub(u'[‘’]', u"'", t)
     t = string.replace(t, "&", u"＆")
-    # t = re.sub(u'…+|。{2,}', '...', t)
+    t = string.replace(t, u"!?", u"?!")
+    t = string.replace(t, u"!", u"！")
+    t = string.replace(t, u"?", u"？")
+    t = string.replace(t, u"！？", u"！？")
     t = re.sub(u'…+|。{2,}|\.{2,}', u'……', t)
     t = re.sub(u'—+', u'——', t)
     t = re.sub(u'^ +', '', t)
@@ -79,16 +81,11 @@ def symbolchange(t):
     t = string.replace(t, u"：", u":")
     t = string.replace(t, u"（", u"(")
     t = string.replace(t, u"）", u")")
-    # t = string.replace(t, u"，", u",")
-    #t = string.replace(t, u"！", u"!")
-    #t = string.replace(t, u"？", u"?")
-    #t = string.replace(t, u"!?", u"?!")
-    #t = string.replace(t, u"！？", u"？！")
     t = string.replace(t, "<", u"〈") 
     t = string.replace(t, ">", u"〉")
-    t = re.sub(u'([—.])[!?。]+', u'\g<1>', t)
-    t = re.sub(u'(—)\.+', u'\g<1>', t)
-    t = re.sub(u'(\.)—+', u'\g<1>', t)
+    t = re.sub(u'([—.…])[!?。？！，,]+', u'\g<1>', t)
+    t = re.sub(u'(—)[.…]+', u'\g<1>', t)
+    t = re.sub(u'([.…])—+', u'\g<1>', t)
 
     return t
 
@@ -105,7 +102,10 @@ EOF
 
 :silent %s/^ \+//ge
 :silent %s/^$\n//ge
-:silent %s`[^"!?.)——。！？”……）＊※☆★□■♢\*]\zs\ze」$`。`ge
+:silent %s`[^"!?.)——。！？”……）＊※☆★□■♢\*」]\zs\ze」$`。`ge
+:silent %s`！？`？！`ge
+:silent %s`[！？，。]\+\ze[—…]``ge
+:silent %s`[—…]\zs[！？，。]\+``ge
 endfunction "}}}1
 
 function SentenceConnect() "{{{1
@@ -185,7 +185,7 @@ endfunction "}}}
 function AddTitle() "{{{1
     :silent t.
     :normal k
-    :silent s/^<p>\(.*\)<\/p>$\n^<p>\(.*\)<\/p>$/<title>\2<\/title>\r<h1>\2<\/h1>/e
+    :silent s/^<p>\(.*\)<\/p>$\n^<p>\(.*\)<\/p>$/<title>\2<\/title>\r<h1 style="border-bottom:3px double">\2<\/h1>/e
     :nohl
 endfunction "}}}1
 command! Addtitle call AddTitle()
@@ -195,7 +195,7 @@ function AddTitles(pattern) "{{{1
     if a:pattern != ""
         exec "%s`<p>\\(" . a:pattern . "\\)</p>`<title>\\1</title>\\r<h1>\\1</h1>`g"
     else
-        %s`\v\<p\>([序终終间][章幕]|幕间|后记|後記|第.{,3}[章幕话].*)\</p\>`<title>\1</title>\r<h1>\1</h1>`ge
+        %s`\v\<p\>([序终終间][章幕] .*|幕间|后记|後記|第.{,3}[章幕话].*)\</p\>`<title>\1</title>\r<h1 style="border-bottom:3px double">\1</h1>`ge
     endif
 
 endfunction "}}}1
