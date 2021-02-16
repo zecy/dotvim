@@ -26,9 +26,7 @@ set showcmd
 "color iceberg
 "color pencil
 "color xoria256
-set background=light
-color gruvbox
-let g:gruvbox_contrast_light = 'hard'
+colorscheme gruvbox-material
 
 filetype indent on
 
@@ -64,22 +62,9 @@ set cursorline "高翔当前行,设置在zzz.vim
 
 "}}}
 "设置字体{{{2
-"set gfw=方正准圆_GBK:h10
+set gfw=Inziu_IosevkaCC_Slab_SC:h11.5
+set guifont=Cascadia_Mono:h10 " Win 下用 _ 代表空格
 "set guifont=Source\ Code\ Pro\ for\ Powerline:h13 " OSX 下使用反斜杠处理空格
-set guifont=Inziu\ Iosevka\ SC:h13
-"set guifont=PragmataPro\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
-set macligatures
-"set guifont=Fira\ Code:h12
-"set guifont=Anonymous_Pro:h11
-"set guifont=Anonymice_Powerline:h11:cANSI
-"set gfw=Monaco:h10
-"set guifont=Source_Code_Pro:h10.5
-"set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
-"set guifont=Ubuntu_Mono:h12:cANSI
-"set guifont=Inconsolata:h10:cANSI
-"set guifont=PragmataPro:h10:cANSI
-"set gfw=Yahei_Mono:h10:cANSI
-"set guifont=Meslo_LG_S_DZ:h10:cANSI
 set backspace=indent,eol,start
 "解决有时只显示一半双字节字符的问题
 set ambiwidth=double
