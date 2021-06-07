@@ -176,6 +176,29 @@ endfunction
 nnoremap 0 :call ToggleHomeZero()<CR>
 "}}}1
 
+"生成中文数字
+function! ChineseNumber(n)
+    set encoding=utf-8
+    let numlist = split(a:n, '\zs')
+    let cnlist = ['零','一','二','三','四','五','六','七','八','九']
+    let ditlist = ['','十','百','千','万']
+    let r = ''
+
+    for i in range(len(numlist))
+        if len(numlist) == 2 && numlist[i] == 1 && i == 0
+            let r .= '十'
+        elseif i == len(numlist)-1 && numlist[i] == 0
+            let r .= ''
+        else
+            let num = cnlist[numlist[i]]
+            let dig = ditlist[len(numlist)-i-1]
+            let r .= num.dig
+        endif
+    endfor
+
+    return r
+endfunction
+
 "==================插件设置==========================
 
 "插件设置{{{1
